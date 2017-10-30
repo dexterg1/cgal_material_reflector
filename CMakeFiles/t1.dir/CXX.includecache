@@ -19,6 +19,16 @@ mesh/mesh.h
 /Users/dgordon/CLionProjects/t1/mesh/mesh.h
 math.h
 -
+stdfx.h
+/Users/dgordon/CLionProjects/t1/stdfx.h
+
+/Users/dgordon/CLionProjects/t1/mesh/mesh.cpp
+mesh.h
+/Users/dgordon/CLionProjects/t1/mesh/mesh.h
+
+/Users/dgordon/CLionProjects/t1/mesh/mesh.h
+
+/Users/dgordon/CLionProjects/t1/stdfx.h
 CGAL/Exact_predicates_inexact_constructions_kernel.h
 -
 CGAL/Constrained_Delaunay_triangulation_2.h
@@ -35,12 +45,6 @@ CGAL/Aff_transformation_2.h
 -
 typeinfo
 -
-
-/Users/dgordon/CLionProjects/t1/mesh/mesh.cpp
-mesh.h
-/Users/dgordon/CLionProjects/t1/mesh/mesh.h
-
-/Users/dgordon/CLionProjects/t1/mesh/mesh.h
 
 /Users/dgordon/CLionProjects/t1/vert/vert.cpp
 ../vert/vert.h

@@ -3,6 +3,7 @@
 
 CMakeFiles/t1.dir/main.cpp.o: main.cpp
 CMakeFiles/t1.dir/main.cpp.o: mesh/mesh.h
+CMakeFiles/t1.dir/main.cpp.o: stdfx.h
 CMakeFiles/t1.dir/main.cpp.o: vert/vert.h
 
 CMakeFiles/t1.dir/mesh/mesh.cpp.o: mesh/mesh.cpp
