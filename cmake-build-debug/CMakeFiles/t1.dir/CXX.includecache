@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/dgordon/CLionProjects/t1/main.cpp
+iostream
+-
+OpenGL/gl.h
+-
+GLUT/glut.h
+-
+CGAL/Exact_predicates_inexact_constructions_kernel.h
+-
+CGAL/Constrained_Delaunay_triangulation_2.h
+-
+CGAL/Delaunay_mesher_2.h
+-
+CGAL/Delaunay_mesh_face_base_2.h
+-
+CGAL/Delaunay_mesh_size_criteria_2.h
+-
+CGAL/Aff_transformation_2.h
+-
+typeinfo
+-
+
