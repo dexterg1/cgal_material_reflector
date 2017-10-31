@@ -17,7 +17,6 @@ CDT cdt;
 
 void displayFaces(CDT cd, float scale) {
 
-    std::cout << "Display faces:" << std::endl << std::endl << std::endl << std::endl << std::endl;
     glColor3f(1, 0, 0);
     Vertex_handle vh;
     CDT::Finite_faces_iterator it;
@@ -31,39 +30,42 @@ void displayFaces(CDT cd, float scale) {
 }
 
 void displayEdges(CDT cd, float scale) {
-
+    glLineWidth(2.5);
+    glColor3f(1, 1, 0);
+    CDT::Finite_edges_iterator ft;
+    for ( ft = cd.finite_edges_begin(); ft !=cd.finite_edges_end(); ft++){
+        glBegin(GL_LINES);
+        glVertex3f(cd.segment(ft).source().x() * scale, cd.segment(ft).source().y() * scale, 0.0f);
+        glVertex3f(cd.segment(ft).target().x() * scale, cd.segment(ft).target().y() * scale, 0.0f);
+        glEnd();
+    }
 }
 
 
 
 void display() {
 
+
+    int w = glutGet(GLUT_WINDOW_WIDTH);
+    int h = glutGet(GLUT_WINDOW_HEIGHT);
+
+
+
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glEnable(GL_DEPTH_TEST);
 
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    glOrtho(-2.0, 2.0, -2.0, 2.0, -2.0, 500.0);
+    glOrtho(-2.0, 2.0, -2.0 * h / w, 2.0 * h / w, -2.0, 500.0);
 
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
-    gluLookAt(2, 2, 2, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+    gluLookAt(.001, .001, 10, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0);
     glScalef(.005,.005,.005);
-    glRotatef(20, 0, 1, 0);
-    glRotatef(30, 0, 0, 1);
-    glRotatef(5, 1, 0, 0);
-    glTranslatef(-300, 0, 0);
-
-    glColor3f(1,1,1);
-
     displayFaces(cdt, 100);
+    displayEdges(cdt, 100);
 
-    glutStrokeCharacter(GLUT_STROKE_ROMAN, 'P');
-    glutStrokeCharacter(GLUT_STROKE_ROMAN, 'I');
-    glutStrokeCharacter(GLUT_STROKE_ROMAN, 'T');
-    glutStrokeCharacter(GLUT_STROKE_ROMAN, 'H');
-    glutStrokeCharacter(GLUT_STROKE_ROMAN, 'Y');
-
+    std::cout << "W/H: " << w << "/"<< h <<std::endl;
     glutSwapBuffers();
 } /* end func displayCall */
 
@@ -147,17 +149,22 @@ int main(int argc, char *argv[]) {
     double toDouble = 2.1;
     std::cout<< "val: "<< toDouble << " doubled: " << doubleIt(toDouble)<< std::endl;
 
+
+    CDT::Finite_edges_iterator ft;
+    for ( ft = cdt.finite_edges_begin(); ft !=cdt.finite_edges_end(); ft++){
+        std::cout<< "source: " << cdt.segment(ft).source()<< std::endl;
+        std::cout<< "target: " << cdt.segment(ft).target()<< std::endl;
+    }
+
     //displayFaces(cdt);
 
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
     glutInitWindowSize(500, 500);
     glutInitWindowPosition(300, 200);
-    glutCreateWindow("Hello World!");
+    glutCreateWindow("Mesh");
     glutDisplayFunc(display);
     glutMainLoop();
-
-
 
     return 0;
 }
