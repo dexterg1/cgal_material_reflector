@@ -13,6 +13,29 @@
 
 #include "stdfx.h"
 
+CDT cdt;
+
+void displayFaces(CDT cd, float scale) {
+
+    std::cout << "Display faces:" << std::endl << std::endl << std::endl << std::endl << std::endl;
+    glColor3f(1, 0, 0);
+    Vertex_handle vh;
+    CDT::Finite_faces_iterator it;
+    for (it = cd.finite_faces_begin(); it != cd.finite_faces_end(); it++) {
+        glColor3ub( rand()%255, rand()%255, rand()%255 );
+        glBegin(GL_TRIANGLES);
+        for (int i = 0; i < 3; i++) glVertex3f(cd.triangle(it)[i].x() * scale, cd.triangle(it)[i].y() * scale, 0.0f);
+        glEnd();
+        std::cout << "Tri X :" << cd.triangle(it)[0].x() << " Tri Y :" << cd.triangle(it)[0].y() << std::endl;
+    }
+}
+
+void displayEdges(CDT cd, float scale) {
+
+}
+
+
+
 void display() {
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -32,6 +55,9 @@ void display() {
     glTranslatef(-300, 0, 0);
 
     glColor3f(1,1,1);
+
+    displayFaces(cdt, 100);
+
     glutStrokeCharacter(GLUT_STROKE_ROMAN, 'P');
     glutStrokeCharacter(GLUT_STROKE_ROMAN, 'I');
     glutStrokeCharacter(GLUT_STROKE_ROMAN, 'T');
@@ -43,11 +69,11 @@ void display() {
 
 int main(int argc, char *argv[]) {
 
-    CDT cdt;
-    Vertex_handle va = cdt.insert(Point(-4,0));
-    Vertex_handle vb = cdt.insert(Point(0,-1));
-    Vertex_handle vc = cdt.insert(Point(4,0));
-    Vertex_handle vd = cdt.insert(Point(0,1));
+
+    Vertex_handle va = cdt.insert(Point(-2,-2));
+    Vertex_handle vb = cdt.insert(Point(-2,2));
+    Vertex_handle vc = cdt.insert(Point(2,2));
+    Vertex_handle vd = cdt.insert(Point(2,-2));
     cdt.insert(Point(2, 0.6));
     cdt.insert_constraint(va, vb);
     cdt.insert_constraint(vb, vc);
@@ -120,6 +146,8 @@ int main(int argc, char *argv[]) {
 
     double toDouble = 2.1;
     std::cout<< "val: "<< toDouble << " doubled: " << doubleIt(toDouble)<< std::endl;
+
+    //displayFaces(cdt);
 
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
