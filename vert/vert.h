@@ -8,24 +8,27 @@
 
 typedef CGAL::Exact_predicates_inexact_constructions_kernel K;
 typedef CGAL::Vector_2<K> Vector_2;
+typedef CGAL::Vector_3<K> Vector_3;
 
 class Vert {
 
 public:
-    double x;
-    double y;
+    float x;
+    float y;
+    float z;
 
     Vert();
-    Vert(double x, double y);
-    void setX(double nx){ x = nx; return;};
-    void setY(double ny){ y = ny; return;};
+    Vert(float x, float y, float z);
+    void setX(float nx){ x = nx; return;};
+    void setY(float ny){ y = ny; return;};
+    void setZ(float nz){ z = nz; return;};
 
 
-    void Displace(Vector_2 p);
+    void Displace(Vector_3 p);
 
-    double size();
+    float size();
 
-    void Displace(Vector_2 p, double limit);
+    void Displace(Vector_3 p, float limit);
 
 
 };
