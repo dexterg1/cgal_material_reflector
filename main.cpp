@@ -230,6 +230,59 @@ int main(int argc, char *argv[]) {
     }
 
 
+    /** Calculate sheer forces on a vertex based on adjacent triangles.
+
+        * Find the angle between the adjacent face and its segment neighbour vs the rest shape: for verts away from the edges
+        * For radial symmetry: Compute some mirror force relative to angular displacement off the resting normal for edge verts.
+        * For radial symmetry: Compute some mirror force for verts with an opposite segment at the shapes edge.
+
+     # Requires
+
+        * Calculation of a faces normal
+        * Finding the adjacent face to the face in question that shares the opposite segment.
+        * It can be assumed that the resting face normals are parallel, no need to store the resting relative alignments between each adjacent face.
+
+     **/
+
+
+
+    /** Calculate the strain forces between verts based on displacement from the rest position
+
+        * The current positions of all points are stored in info. Use that displacement against the resting Triangulation value to calculate change in displacement for spring / compressive force
+
+     # Requires
+
+        * Caculate the resting and current distance between a pair of points
+
+    **/
+
+
+
+    /** Calculate the pressure force on a face and apply them to its vertices.
+
+     # Requires
+
+        * Caclulation of face area
+        * Application of forces to the verts based on a balance of forces
+
+    **/
+
+
+    /** Calculate the weight force on a face and apply them to its vertices.
+
+     # Requires
+
+        * Caclulation of face mass * gravity.
+        * Application of forces to the verts based on a balance of forces.
+
+    **/
+
+
+
+
+
+
+
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
     glutInitWindowSize(500, 500);
